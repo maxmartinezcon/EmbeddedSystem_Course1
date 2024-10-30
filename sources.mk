@@ -14,7 +14,7 @@ SOURCES = memory.c
 SOURCES += main.c
 SOURCES += syscalls.c
 
-TARGET = c1m2.out
+TARGET = course1.out
 
 ifeq ($(PLATFORM), MSP432)
     SOURCES += interrupts_msp432p401r_gcc.c \

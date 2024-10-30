@@ -26,6 +26,11 @@ include sources.mk
 # Platform Overrides
 CFLAGS = -Wall -Werror -g -O0 -std=c99 
 CPPFLAGS = $(INCLUDES)
+VERBOSE = 0
+
+ifeq ($(VERBOSE), 1)
+	CFLAGS += -DVERBOSE
+endif
 
 
 ifeq ($(PLATFORM), HOST)
@@ -78,12 +83,12 @@ compile-all: $(SOURCES:.c=.o)
 # Compilar y enlazar todo
 .PHONY: build
 build: generate-preprocessed compile-all
-	$(LD) $(LDFLAGS) -o c1m2.out $(SOURCES:.c=.o)
+	$(LD) $(LDFLAGS) -o course1.out $(SOURCES:.c=.o)
 
 # Limpiar
 .PHONY: clean
 clean:
-	rm -f *.o *.i *.asm *.d c1m2.out c1m2.map
+	rm -f *.o *.i *.asm *.d course1.out course1.map
 
 -include $(SOURCES:.c=.d)
 

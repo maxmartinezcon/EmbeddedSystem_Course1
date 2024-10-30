@@ -14,20 +14,29 @@
 /******************************************************************************
  Platform - MSP432
 ******************************************************************************/
-#if defined (MSP432)
-#include "msp432p401r.h"
+#if defined (MSP432) 
+#if defined VERBOSE
+#include <stdio.h>
+#define PRINTF(...) printf(__VA_ARGS__)
+#else
 #define PRINTF(...)
+#endif
+#include "msp432p401r.h"
 /******************************************************************************
  Platform - HOST
 ******************************************************************************/
 #elif defined (HOST)
+#if defined VERBOSE
 #include <stdio.h>
 #define PRINTF(...) printf(__VA_ARGS__)
+#else
+#define PRINTF(...)
+#endif
 /******************************************************************************
  Platform - Unsupported
 ******************************************************************************/
-#else
-#error "Platform provided is not supported in this Build System"
+// #else
+// #error "Platform provided is not supported in this Build System"
 #endif
 
 #endif /* __PLATFORM_H__ */
