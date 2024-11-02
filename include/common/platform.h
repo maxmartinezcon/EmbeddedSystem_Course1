@@ -36,8 +36,11 @@
  Platform - Unsupported
 ******************************************************************************/
 // #else
-// #error "Platform provided is not supported in this Build System"
+// #error Platform provided is not supported in this Build System
+
 #endif
+
+
 
 #endif /* __PLATFORM_H__ */
 

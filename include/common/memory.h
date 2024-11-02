@@ -20,13 +20,13 @@
  *
  */
 #ifndef __MEMORY_H__
-#define __MEMORY_H__
+#define __MEMORY_H__ 
 
 /**
  * @brief Sets a value of a data array 
  *
  * Given a pointer to a char data set, this will set a provided
- * index into that data set to the value provided.
+ * index into that data set to the value provided.hardware
  *
  * @param ptr Pointer to data array
  * @param index Index into pointer array to set value
@@ -42,7 +42,7 @@ void set_value(char * ptr, unsigned int index, char value);
  * Given a pointer to a char data set, this will clear a provided
  * index into that data set to the value zero.
  *
- * @param ptr Pointer to data array
+ * @param ptr Pointer to data array 
  * @param index Index into pointer array to set value
  *
  * @return void.
@@ -89,5 +89,16 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+
+#include <stddef.h>
+
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+uint8_t * my_memzero(uint8_t * src, size_t length);
+uint8_t * my_reverse(uint8_t * src, size_t length);
+int32_t * reserve_words(size_t length);
+void free_words(int32_t * src);
 
 #endif /* __MEMORY_H__ */

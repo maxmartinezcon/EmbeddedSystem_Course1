@@ -28,10 +28,6 @@ CFLAGS = -Wall -Werror -g -O0 -std=c99
 CPPFLAGS = $(INCLUDES)
 VERBOSE = 0
 
-ifeq ($(VERBOSE), 1)
-	CFLAGS += -DVERBOSE
-endif
-
 
 ifeq ($(PLATFORM), HOST)
 	LDFLAGS = -o $(TARGET) -lm
