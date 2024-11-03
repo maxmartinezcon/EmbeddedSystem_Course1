@@ -92,6 +92,7 @@ void clear_all(char * ptr, unsigned int size);
 
 
 #include <stddef.h>
+#include <stdint.h>
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
