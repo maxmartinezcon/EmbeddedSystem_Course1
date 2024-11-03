@@ -22,10 +22,10 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
     *(array + (i - 1)) = '\0';
 
     do{
-        char * temp = realloc(array, sizeof(char) * ++i);
-        if(temp == NULL){
+        uint8_t * temp = realloc(array, sizeof(uint8_t) * ++i);
+        if(temp == 0){
             free(array);
-            return NULL;
+            return 0;
         }
         array = temp;
         res = data % base;
@@ -34,10 +34,10 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
     }while(data > 0);
 
     if(isNegative == true){
-        char * temp = realloc(array, sizeof(char) * ++i);
-        if(temp == NULL){
+        uint8_t * temp = realloc(array, sizeof(char) * ++i);
+        if(temp == 0){
             free(array);
-            return NULL;
+            return 0;
         }
         array = temp;
         *(array + (i - 1)) = '-';
@@ -54,7 +54,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
         end--;
     }
     ptr = array;
-    return ptr;
+    return *ptr;
 
 }
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
@@ -68,23 +68,29 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
         ptr = ptr + 1;
         digits -= 1;
     }
-    int32_t * val = 0;
+    int32_t val = 0;
+    int32_t temp;
     for(unsigned char i=0;i<digits-1;i++){
-        if(*(ptr + i) >= base){
-            return 0;
-        }
         if(*(ptr + i) >= 'A' && *(ptr + i) <= 'F'){
-            *val = *val*base + (*(ptr + i) - 'A' + 10);
+            temp = *(ptr + i) - 'A' + 10;
         }
         else{
             if(*(ptr + i) >= '0' && *(ptr + i) <= '9'){
-                *val = *val*base + (*(ptr + i) - '0');
+                temp = *(ptr + i) - '0';
+            }
+            else{
+                return 0;
             }
         }
+        if(temp >= base){
+            return 0;
+        }
+        
+        val = val*base + temp;
     } 
 
     if(isNegative){
-        *val = -(*val);
+        val = -(val);
     }
     return val;
 }

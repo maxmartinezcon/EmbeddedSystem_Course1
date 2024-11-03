@@ -10,23 +10,27 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-SOURCES = memory.c 
-SOURCES += main.c
-SOURCES += syscalls.c
+SOURCES = src/memory.c 
+SOURCES += src/main.c
+SOURCES += src/syscalls.c
+SOURCES += src/course1.c
+SOURCES += src/stats.c
+SOURCES += src/data.c
 
-TARGET = course1.out
+
+TARGET = main.out
 
 ifeq ($(PLATFORM), MSP432)
-    SOURCES += interrupts_msp432p401r_gcc.c \
-               startup_msp432p401r_gcc.c \
-               system_msp432p401r.c
+    SOURCES += src/interrupts_msp432p401r_gcc.c \
+               src/startup_msp432p401r_gcc.c \
+               src/system_msp432p401r.c
 endif
 
 # Add your include paths to this variable
-INCLUDES = -I../include/common
+INCLUDES = -Iinclude/common
 
 ifeq ($(PLATFORM), MSP432)
-    INCLUDES += -I../include/msp432 \
-                -I../include/CMSIS
+    INCLUDES += -Iinclude/msp432 \
+                -Iinclude/CMSIS
 endif
 

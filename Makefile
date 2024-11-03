@@ -24,9 +24,8 @@
 include sources.mk
 
 # Platform Overrides
-CFLAGS = -Wall -Werror -g -O0 -std=c99 
+CFLAGS = -Wall -Werror -g -O0 -std=c99 -DVERBOSE -DCOURSE1 
 CPPFLAGS = $(INCLUDES)
-VERBOSE = 0
 
 
 ifeq ($(PLATFORM), HOST)
@@ -50,7 +49,7 @@ else ifeq ($(PLATFORM), MSP432)
 	CPPFLAGS += $(INCLUDES)
 
 else 
-	$(error Unknow patform specified.)
+$(error Unknow patform specified.)
 
 endif
 
@@ -79,12 +78,12 @@ compile-all: $(SOURCES:.c=.o)
 # Compilar y enlazar todo
 .PHONY: build
 build: generate-preprocessed compile-all
-	$(LD) $(LDFLAGS) -o course1.out $(SOURCES:.c=.o)
+	$(LD) $(LDFLAGS) -o main.out $(SOURCES:.c=.o)
 
 # Limpiar
 .PHONY: clean
 clean:
-	rm -f *.o *.i *.asm *.d course1.out course1.map
+	rm -f src/*.o src/*.i src/*.asm src/*.d src/main.out src/main.map
 
 -include $(SOURCES:.c=.d)
 
