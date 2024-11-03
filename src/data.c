@@ -78,6 +78,6 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
     unsigned char i = 1;
     unsigned char i = 1;
     int8_t * val = malloc(sizeof(int8_t) * i);
-    *(val + (i - 1)) = '\0';
+    *(val + (i - 1)) = '\0'; 
      
 }
