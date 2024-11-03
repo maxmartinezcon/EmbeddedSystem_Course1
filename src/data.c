@@ -58,6 +58,10 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
 
 }
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
+    if(base < 2 || base > 16){
+        return 0;
+    }
+
     bool isNegative = false;
     if(*ptr == '-'){
         isNegative = true;
@@ -66,18 +70,21 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
     }
     int32_t * val = 0;
     for(unsigned char i=0;i<digits-1;i++){
+        if(*(ptr + i) >= base){
+            return 0;
+        }
         if(*(ptr + i) >= 'A' && *(ptr + i) <= 'F'){
-            *val = *val*base+ (*(ptr + i) - 'A' + 10);
+            *val = *val*base + (*(ptr + i) - 'A' + 10);
         }
         else{
-            if(*(ptr + i) >= 0 && *(ptr + i) <= 9){
+            if(*(ptr + i) >= '0' && *(ptr + i) <= '9'){
                 *val = *val*base + (*(ptr + i) - '0');
             }
         }
+    } 
+
+    if(isNegative){
+        *val = -(*val);
     }
-    unsigned char i = 1;
-    unsigned char i = 1;
-    int8_t * val = malloc(sizeof(int8_t) * i);
-    *(val + (i - 1)) = '\0'; 
-     
+    return val;
 }
